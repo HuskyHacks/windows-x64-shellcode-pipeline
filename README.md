@@ -53,6 +53,8 @@ unsigned int shellcode_64_len = 922;
 
 This prints the shellcode to the terminal formatted similarly to how `msfvenom` would output it and also writes the `.bin` file to the build dir.
 
+<img width="635" height="181" alt="image" src="https://github.com/user-attachments/assets/1809a8d3-15e9-4c30-8d2e-f3beb8759013" />
+
 ## Custom Payloads
 
 The source comes with an example payload file (`src/payload_msgbox.c`) which should give you a good starting point on how to develop a custom payload. The other source files handle the rest of the work required to bootstrap and execute position-independent code, including the runtime and calling the shellcode entrypoint after aligning the stack to the 16-byte boundary. With that in mind, to write a custom payload, you need to:
