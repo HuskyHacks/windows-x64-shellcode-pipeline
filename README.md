@@ -27,28 +27,28 @@ You may encounter warnings when running make, but the pipeline will still work:
 
 ```
 λ make
-mkdir -p build
-x86_64-w64-mingw32-gcc -std=c11 -O2 -Wall -S -masm=intel -fno-asynchronous-unwind-tables -fno-stack-protector -ffreestanding -o build/c-shellcode.s src/shellcode.c
+docker build -t shellcode-build-pipeline:latest .
+
 ...[snip]...
+
 python3 tools/handle_asm.py clean build/c-shellcode.s build/c-shellcode_cleaned.asm
 [+] Cleaned assembly written to build/c-shellcode_cleaned.asm
-x86_64-w64-mingw32-gcc -c -x assembler-with-cpp -o build/c-shellcode.o build/c-shellcode_cleaned.asm
-build/c-shellcode_cleaned.asm: Assembler messages:
-build/c-shellcode_cleaned.asm:123: Warning: redundant segment overrides
-x86_64-w64-mingw32-gcc -O2 -Wall -nostdlib -nodefaultlibs -Wl,--entry=AlignRSP -o build/c-shellcode.exe build/c-shellcode.o
+x86_64-w64-mingw32-gcc -c -x assembler-with-cpp -o 
+
+...[snip]...
+
 python3 tools/handle_asm.py extract build/c-shellcode.exe build/c-shellcode_64_encoded.bin
 [*] Entry point RVA: 0x1000
 [*] .text section: VirtualAddr=0x1000, RawPtr=0x400, RawSize=0x400
 [*] Entry point offset in .text: 0x0
-[+] Raw payload length: 920 bytes
-[+] Final shellcode (stub + encoded payload): 950 bytes
+[+] Raw payload length: 892 bytes
+[+] Final shellcode (stub + encoded payload): 922 bytes
 
 /* ================== C SHELLCODE ARRAY ================== */
 unsigned char shellcode_64[] = {
-    0x48, 0x8d, /*... snip ... */
+    0x48, 0x8d, /*... snip */
 };
-unsigned int shellcode_64_len = 950;
-/* ======================================================== */
+unsigned int shellcode_64_len = 922;
 ```
 
 This prints the shellcode to the terminal formatted similarly to how `msfvenom` would output it and also writes the `.bin` file to the build dir.
