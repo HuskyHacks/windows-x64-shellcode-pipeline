@@ -14,7 +14,7 @@ Her paper details how to perform the process entirely within the Visual Studio d
 
 - Allows you to author the final payloads as modular, ergonomic C source rather than error-prone assembly.
 - Builds the shellcode in stages: first as the assembly of a scaffolded PE built for PIC execution, then with automated Python post-processing to clean the resulting assembly, and finally as a PIC `.bin` file ready for execution
-- Handles potential stack alignment by implementing Matt Graeber's tried-and-true [AlignRSP stub](https://github.com/mattifestation/PIC_Bindshell/blob/master/PIC_Bindshell/AdjustStack.asm#L24)  
+- Handles potential stack alignment errors by implementing Matt Graeber's tried-and-true [AlignRSP stub](https://github.com/mattifestation/PIC_Bindshell/blob/master/PIC_Bindshell/AdjustStack.asm#L24)  
 - Includes an example of a simple encoder/decoder stub (single byte XOR) to show the process of generating polymorphic shellcode that is built in an encoded state and decoded at execution (think Shikata Ga Nai).
 
 The point here is to demonstrate the build pipeline, not necessarily provide you with field-grade shellcode.
