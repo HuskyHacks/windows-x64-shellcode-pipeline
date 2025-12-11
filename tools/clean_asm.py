@@ -1,6 +1,5 @@
 # Ref: https://github.com/mattifestation/PIC_Bindshell/blob/master/PIC_Bindshell/AdjustStack.asm#L24    
 ALIGN_STUB = r"""
-    .p2align 4
     .globl AlignRSP
 AlignRSP:
     push rsi
